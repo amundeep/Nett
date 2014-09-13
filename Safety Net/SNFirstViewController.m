@@ -59,4 +59,20 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    
+    if (!yourObject) {
+        yourObject = [[yourViewController alloc] initWithNibName:@"yourViewController" bundle:nil];
+        
+    }
+    
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    [backBarButtonItem release];
+    [self.navigationController pushViewController:yourObject animated:YES];
+    
+}
+
 @end

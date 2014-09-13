@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SNSecondViewController : UIViewController
+@interface SNSecondViewController : UIViewController{
+    
+    
+}
+
+@property (strong, nonatomic) IBOutlet UIScrollView *infoScrollView;
+
+
 
 @end

@@ -18,6 +18,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+//    self.edgesForExtendedLayout = UIRectEdgeAll;
+//    self.infoScrollView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, self.tabBarController.tabBar.frame.size.height, 0.0f);
+//    [self.infoScrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0.0f, 0.0f, self.tabBarController.tabBar.frame.size.height, 0.0f)];
+    
+    [self.infoScrollView setContentSize:CGSizeMake(320, 720)];
+
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
