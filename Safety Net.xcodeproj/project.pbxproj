@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20308F1219C3D164003F0D7E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 20308F1119C3D164003F0D7E /* Reachability.m */; };
+		20308F1519C3D351003F0D7E /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20308F1419C3D351003F0D7E /* CoreBluetooth.framework */; };
+		20308F1719C3E53A003F0D7E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20308F1619C3E53A003F0D7E /* CoreLocation.framework */; };
+		205E689E19C48B5600C10145 /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E689D19C48B5600C10145 /* PebbleVendor.framework */; };
+		205E68A019C48B8300C10145 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E689F19C48B8300C10145 /* ExternalAccessory.framework */; };
+		205E68A219C48B9400C10145 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E68A119C48B9400C10145 /* libz.dylib */; };
+		205E68A419C48BA000C10145 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E68A319C48BA000C10145 /* CoreMotion.framework */; };
+		205E68A619C48BAA00C10145 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E68A519C48BAA00C10145 /* CFNetwork.framework */; };
+		205E68A819C48BB400C10145 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E68A719C48BB400C10145 /* MessageUI.framework */; };
+		206E72E719C4D981002E10BD /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 205E689B19C48B4900C10145 /* PebbleKit.framework */; };
 		8A58442219C3A10F00DB8125 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A58442119C3A10F00DB8125 /* Foundation.framework */; };
 		8A58442419C3A10F00DB8125 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A58442319C3A10F00DB8125 /* CoreGraphics.framework */; };
 		8A58442619C3A10F00DB8125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A58442519C3A10F00DB8125 /* UIKit.framework */; };
@@ -35,6 +45,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20308F1119C3D164003F0D7E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		20308F1319C3D16A003F0D7E /* Reachability.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		20308F1419C3D351003F0D7E /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		20308F1619C3E53A003F0D7E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		205E689B19C48B4900C10145 /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
+		205E689D19C48B5600C10145 /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = ../PebbleVendor.framework; sourceTree = "<group>"; };
+		205E689F19C48B8300C10145 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		205E68A119C48B9400C10145 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		205E68A319C48BA000C10145 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		205E68A519C48BAA00C10145 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		205E68A719C48BB400C10145 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8A58441E19C3A10F00DB8125 /* Safety Net.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safety Net.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A58442119C3A10F00DB8125 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A58442319C3A10F00DB8125 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -63,8 +84,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A58442419C3A10F00DB8125 /* CoreGraphics.framework in Frameworks */,
+				205E68A819C48BB400C10145 /* MessageUI.framework in Frameworks */,
+				205E68A619C48BAA00C10145 /* CFNetwork.framework in Frameworks */,
+				206E72E719C4D981002E10BD /* PebbleKit.framework in Frameworks */,
+				205E68A419C48BA000C10145 /* CoreMotion.framework in Frameworks */,
+				205E68A219C48B9400C10145 /* libz.dylib in Frameworks */,
+				205E68A019C48B8300C10145 /* ExternalAccessory.framework in Frameworks */,
 				8A58442619C3A10F00DB8125 /* UIKit.framework in Frameworks */,
+				20308F1719C3E53A003F0D7E /* CoreLocation.framework in Frameworks */,
+				20308F1519C3D351003F0D7E /* CoreBluetooth.framework in Frameworks */,
+				8A58442419C3A10F00DB8125 /* CoreGraphics.framework in Frameworks */,
+				205E689E19C48B5600C10145 /* PebbleVendor.framework in Frameworks */,
 				8A58442219C3A10F00DB8125 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +134,13 @@
 		8A58442019C3A10F00DB8125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				205E68A719C48BB400C10145 /* MessageUI.framework */,
+				205E68A519C48BAA00C10145 /* CFNetwork.framework */,
+				205E68A319C48BA000C10145 /* CoreMotion.framework */,
+				205E68A119C48B9400C10145 /* libz.dylib */,
+				205E689F19C48B8300C10145 /* ExternalAccessory.framework */,
+				20308F1619C3E53A003F0D7E /* CoreLocation.framework */,
+				20308F1419C3D351003F0D7E /* CoreBluetooth.framework */,
 				8A58442119C3A10F00DB8125 /* Foundation.framework */,
 				8A58442319C3A10F00DB8125 /* CoreGraphics.framework */,
 				8A58442519C3A10F00DB8125 /* UIKit.framework */,
@@ -115,6 +152,10 @@
 		8A58442719C3A10F00DB8125 /* Safety Net */ = {
 			isa = PBXGroup;
 			children = (
+				20308F1319C3D16A003F0D7E /* Reachability.h */,
+				20308F1119C3D164003F0D7E /* Reachability.m */,
+				205E689D19C48B5600C10145 /* PebbleVendor.framework */,
+				205E689B19C48B4900C10145 /* PebbleKit.framework */,
 				8A58443019C3A10F00DB8125 /* SNAppDelegate.h */,
 				8A58443119C3A10F00DB8125 /* SNAppDelegate.m */,
 				8A58443319C3A10F00DB8125 /* Main.storyboard */,
@@ -205,6 +246,13 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Amundeep Singh";
 				TargetAttributes = {
+					8A58441D19C3A10F00DB8125 = {
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
 					8A58444119C3A10F00DB8125 = {
 						TestTargetID = 8A58441D19C3A10F00DB8125;
 					};
@@ -259,6 +307,7 @@
 				8A58443219C3A10F00DB8125 /* SNAppDelegate.m in Sources */,
 				8A58443819C3A10F00DB8125 /* SNFirstViewController.m in Sources */,
 				8A58443B19C3A10F00DB8125 /* SNSecondViewController.m in Sources */,
+				20308F1219C3D164003F0D7E /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,9 +432,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Safety",
+					Net,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Safety",
+					Net,
+					"$(PROJECT_DIR)/Safety",
+					Net,
+					"$(PROJECT_DIR)/Safety",
+					Net,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Safety Net/Safety Net-Prefix.pch";
 				INFOPLIST_FILE = "Safety Net/Safety Net-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -396,9 +458,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Safety",
+					Net,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Safety",
+					Net,
+					"$(PROJECT_DIR)/Safety",
+					Net,
+					"$(PROJECT_DIR)/Safety",
+					Net,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Safety Net/Safety Net-Prefix.pch";
 				INFOPLIST_FILE = "Safety Net/Safety Net-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

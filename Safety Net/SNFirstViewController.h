@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 @interface SNFirstViewController : UIViewController
+
+
+
+- (BOOL)connected;
+@property (strong, nonatomic) IBOutlet UILabel *longCord;
+@property (strong, nonatomic) IBOutlet UITextView *latCord;
 
 @end
