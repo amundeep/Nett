@@ -22,6 +22,10 @@
 		8A58444619C3A10F00DB8125 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A58442519C3A10F00DB8125 /* UIKit.framework */; };
 		8A58444E19C3A10F00DB8125 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8A58444C19C3A10F00DB8125 /* InfoPlist.strings */; };
 		8A58445019C3A10F00DB8125 /* Safety_NetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A58444F19C3A10F00DB8125 /* Safety_NetTests.m */; };
+		8A8E87A719C3D14B00996DDB /* alerts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87A619C3D14B00996DDB /* alerts@2x.png */; };
+		8A8E87AB19C3D24300996DDB /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87AA19C3D24300996DDB /* me@2x.png */; };
+		8A8E87AD19C3D2CA00996DDB /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87AC19C3D2CA00996DDB /* settings@2x.png */; };
+		8A8E87B319C3E34200996DDB /* launch_icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,10 @@
 		8A58444B19C3A10F00DB8125 /* Safety NetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Safety NetTests-Info.plist"; sourceTree = "<group>"; };
 		8A58444D19C3A10F00DB8125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A58444F19C3A10F00DB8125 /* Safety_NetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Safety_NetTests.m; sourceTree = "<group>"; };
+		8A8E87A619C3D14B00996DDB /* alerts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alerts@2x.png"; sourceTree = "<group>"; };
+		8A8E87AA19C3D24300996DDB /* me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me@2x.png"; sourceTree = "<group>"; };
+		8A8E87AC19C3D2CA00996DDB /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_icon2@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,10 @@
 				8A58443719C3A10F00DB8125 /* SNFirstViewController.m */,
 				8A58443919C3A10F00DB8125 /* SNSecondViewController.h */,
 				8A58443A19C3A10F00DB8125 /* SNSecondViewController.m */,
+				8A8E87A619C3D14B00996DDB /* alerts@2x.png */,
+				8A8E87AA19C3D24300996DDB /* me@2x.png */,
+				8A8E87AC19C3D2CA00996DDB /* settings@2x.png */,
+				8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */,
 				8A58443C19C3A10F00DB8125 /* Images.xcassets */,
 				8A58442819C3A10F00DB8125 /* Supporting Files */,
 			);
@@ -235,8 +247,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A58443D19C3A10F00DB8125 /* Images.xcassets in Resources */,
+				8A8E87AD19C3D2CA00996DDB /* settings@2x.png in Resources */,
+				8A8E87B319C3E34200996DDB /* launch_icon2@2x.png in Resources */,
+				8A8E87A719C3D14B00996DDB /* alerts@2x.png in Resources */,
 				8A58442C19C3A10F00DB8125 /* InfoPlist.strings in Resources */,
 				8A58443519C3A10F00DB8125 /* Main.storyboard in Resources */,
+				8A8E87AB19C3D24300996DDB /* me@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

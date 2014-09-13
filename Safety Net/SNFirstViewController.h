@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SNFirstViewController : UIViewController
+@interface SNFirstViewController : UIViewController{
+    
+    NSMutableArray *myAlerts;
+}
+
+@property (strong, nonatomic) IBOutlet UITableView *alertTableView;
+
+@property (strong, nonatomic) NSMutableArray *myAlerts;
 
 @end
