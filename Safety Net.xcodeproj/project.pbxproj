@@ -26,6 +26,11 @@
 		8A8E87AB19C3D24300996DDB /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87AA19C3D24300996DDB /* me@2x.png */; };
 		8A8E87AD19C3D2CA00996DDB /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87AC19C3D2CA00996DDB /* settings@2x.png */; };
 		8A8E87B319C3E34200996DDB /* launch_icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */; };
+		8A8E87B819C4CC3F00996DDB /* SNAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E87B719C4CC3F00996DDB /* SNAlertViewController.m */; };
+		8A8E87BA19C4E01400996DDB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E87B919C4E01400996DDB /* MapKit.framework */; };
+		8A8E87BC19C4E6A300996DDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E87BB19C4E6A300996DDB /* CoreLocation.framework */; };
+		8A8E87BE19C4EF4A00996DDB /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87BD19C4EF4A00996DDB /* blue.png */; };
+		8A8E87C019C4F13B00996DDB /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87BF19C4F13B00996DDB /* green.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +69,12 @@
 		8A8E87AA19C3D24300996DDB /* me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me@2x.png"; sourceTree = "<group>"; };
 		8A8E87AC19C3D2CA00996DDB /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
 		8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_icon2@2x.png"; sourceTree = "<group>"; };
+		8A8E87B619C4CC3F00996DDB /* SNAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNAlertViewController.h; sourceTree = "<group>"; };
+		8A8E87B719C4CC3F00996DDB /* SNAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNAlertViewController.m; sourceTree = "<group>"; };
+		8A8E87B919C4E01400996DDB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8A8E87BB19C4E6A300996DDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8A8E87BD19C4EF4A00996DDB /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = ../../../../../Pictures/Icons/blue.png; sourceTree = "<group>"; };
+		8A8E87BF19C4F13B00996DDB /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = ../../../../../Pictures/Icons/green.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A8E87BC19C4E6A300996DDB /* CoreLocation.framework in Frameworks */,
+				8A8E87BA19C4E01400996DDB /* MapKit.framework in Frameworks */,
 				8A58442419C3A10F00DB8125 /* CoreGraphics.framework in Frameworks */,
 				8A58442619C3A10F00DB8125 /* UIKit.framework in Frameworks */,
 				8A58442219C3A10F00DB8125 /* Foundation.framework in Frameworks */,
@@ -112,6 +125,8 @@
 		8A58442019C3A10F00DB8125 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8A8E87BB19C4E6A300996DDB /* CoreLocation.framework */,
+				8A8E87B919C4E01400996DDB /* MapKit.framework */,
 				8A58442119C3A10F00DB8125 /* Foundation.framework */,
 				8A58442319C3A10F00DB8125 /* CoreGraphics.framework */,
 				8A58442519C3A10F00DB8125 /* UIKit.framework */,
@@ -130,10 +145,14 @@
 				8A58443719C3A10F00DB8125 /* SNFirstViewController.m */,
 				8A58443919C3A10F00DB8125 /* SNSecondViewController.h */,
 				8A58443A19C3A10F00DB8125 /* SNSecondViewController.m */,
+				8A8E87B619C4CC3F00996DDB /* SNAlertViewController.h */,
+				8A8E87B719C4CC3F00996DDB /* SNAlertViewController.m */,
 				8A8E87A619C3D14B00996DDB /* alerts@2x.png */,
 				8A8E87AA19C3D24300996DDB /* me@2x.png */,
 				8A8E87AC19C3D2CA00996DDB /* settings@2x.png */,
 				8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */,
+				8A8E87BD19C4EF4A00996DDB /* blue.png */,
+				8A8E87BF19C4F13B00996DDB /* green.png */,
 				8A58443C19C3A10F00DB8125 /* Images.xcassets */,
 				8A58442819C3A10F00DB8125 /* Supporting Files */,
 			);
@@ -249,6 +268,8 @@
 				8A58443D19C3A10F00DB8125 /* Images.xcassets in Resources */,
 				8A8E87AD19C3D2CA00996DDB /* settings@2x.png in Resources */,
 				8A8E87B319C3E34200996DDB /* launch_icon2@2x.png in Resources */,
+				8A8E87C019C4F13B00996DDB /* green.png in Resources */,
+				8A8E87BE19C4EF4A00996DDB /* blue.png in Resources */,
 				8A8E87A719C3D14B00996DDB /* alerts@2x.png in Resources */,
 				8A58442C19C3A10F00DB8125 /* InfoPlist.strings in Resources */,
 				8A58443519C3A10F00DB8125 /* Main.storyboard in Resources */,
@@ -273,6 +294,7 @@
 			files = (
 				8A58442E19C3A10F00DB8125 /* main.m in Sources */,
 				8A58443219C3A10F00DB8125 /* SNAppDelegate.m in Sources */,
+				8A8E87B819C4CC3F00996DDB /* SNAlertViewController.m in Sources */,
 				8A58443819C3A10F00DB8125 /* SNFirstViewController.m in Sources */,
 				8A58443B19C3A10F00DB8125 /* SNSecondViewController.m in Sources */,
 			);

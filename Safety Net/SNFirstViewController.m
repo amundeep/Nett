@@ -7,6 +7,7 @@
 //
 
 #import "SNFirstViewController.h"
+#import "SNAlertViewController.h"
 
 @interface SNFirstViewController ()
 
@@ -61,17 +62,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//    int indexRow = indexPath.row;
+//    NSString *selectedValue = [myAlerts objectAtIndex:indexRow];
+//
+//    if (!yourObject) {
+//        yourObject = [[yourViewController alloc] initWithNibName:@"yourViewController" bundle:nil];
+//        
+//    }
+//    
+//    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
+//    self.navigationItem.backBarButtonItem = backBarButtonItem;
+//    [backBarButtonItem release];
+//    [self.navigationController pushViewController:yourObject animated:YES];
+ 
+//    UIViewController *newViewController = [[UIViewController alloc] initWithNibName:@"TableCellViewController" bundle:nil];
+//    
+//    [self.navigationController pushViewController:newViewController animated:YES];
+    
+//    [self performSegueWithIdentifier:@"segueIdentifier" sender:tableView];
+    
+    NSLog(@"%s", "Working... ");
+//    SNAlertViewController *modalView = [[SNAlertViewController alloc] initWithNibName:@"SNAlertViewController" bundle:nil];
+////    modalView.transitioningDelegate = UIModalTransitionStyleCoverVertical;
+//    modalView.alertName = [[myAlerts objectAtIndex:indexRow] textLabel].text;
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"tableCellContent" sender:self];
     
     
-    if (!yourObject) {
-        yourObject = [[yourViewController alloc] initWithNibName:@"yourViewController" bundle:nil];
-        
-    }
     
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
-    [backBarButtonItem release];
-    [self.navigationController pushViewController:yourObject animated:YES];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"%s", "Did it go here?");
+   
+}
+
+
+- (IBAction)unwindToAlerts:(UIStoryboardSegue *)unwindSegue
+{
+    
+    printf("%s", "Is it reaching here? ");
     
 }
 
