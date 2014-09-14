@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @interface SNFirstViewController : UIViewController{
     

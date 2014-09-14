@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <CoreBluetooth/CoreBluetooth.h>
 
 @interface SNSecondViewController : UIViewController{
     
@@ -14,7 +17,9 @@
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *infoScrollView;
-
+- (BOOL)connected;
+@property (strong, nonatomic) IBOutlet UILabel *longCord;
+@property (strong, nonatomic) IBOutlet UITextView *latCord;
 
 
 @end
