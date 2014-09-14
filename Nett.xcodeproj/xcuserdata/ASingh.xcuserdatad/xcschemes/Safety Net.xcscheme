@@ -17,7 +17,7 @@
                BlueprintIdentifier = "8A58441D19C3A10F00DB8125"
                BuildableName = "Safety Net.app"
                BlueprintName = "Safety Net"
-               ReferencedContainer = "container:Safety Net.xcodeproj">
+               ReferencedContainer = "container:Nett.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "8A58444119C3A10F00DB8125"
                BuildableName = "Safety NetTests.xctest"
                BlueprintName = "Safety NetTests"
-               ReferencedContainer = "container:Safety Net.xcodeproj">
+               ReferencedContainer = "container:Nett.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "8A58441D19C3A10F00DB8125"
             BuildableName = "Safety Net.app"
             BlueprintName = "Safety Net"
-            ReferencedContainer = "container:Safety Net.xcodeproj">
+            ReferencedContainer = "container:Nett.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "8A58441D19C3A10F00DB8125"
             BuildableName = "Safety Net.app"
             BlueprintName = "Safety Net"
-            ReferencedContainer = "container:Safety Net.xcodeproj">
+            ReferencedContainer = "container:Nett.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -82,7 +82,7 @@
             BlueprintIdentifier = "8A58441D19C3A10F00DB8125"
             BuildableName = "Safety Net.app"
             BlueprintName = "Safety Net"
-            ReferencedContainer = "container:Safety Net.xcodeproj">
+            ReferencedContainer = "container:Nett.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Safety Net.xcodeproj">
+      location = "self:Nett.xcodeproj">
    </FileRef>
 </Workspace>

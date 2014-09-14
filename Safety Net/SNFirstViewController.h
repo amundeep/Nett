@@ -17,7 +17,10 @@
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *alertTableView;
+@property (strong, nonatomic) NSString *dataString;
 
+@property (strong, nonatomic) NSMutableArray *myAlertsTemp;
 @property (strong, nonatomic) NSMutableArray *myAlerts;
+@property (strong, nonatomic) NSArray *passedData;
 
 @end

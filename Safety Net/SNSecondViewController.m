@@ -14,6 +14,7 @@
 @interface SNSecondViewController ()
 
 
+
 @property (strong, nonatomic) CBPeripheralManager       *peripheralManager;
 @property(strong,nonatomic)NSString *lon;
 @property(strong,nonatomic)NSString *lat;
@@ -39,7 +40,11 @@
 
 @end
 
+
 @implementation SNSecondViewController
+
+@synthesize totalData;
+
 
 - (void)viewDidLoad
 {
@@ -53,14 +58,15 @@
     if (![self connected]) {
         NSLog(@"no internet");
     
-        
+
         //[self getShitStarted];
         // not connected
-   } else {
+    } else {
         // connected, do some internet stuff
         NSLog(@"yo it works");
-   }
+    }
 
+    
     
     [self.infoScrollView setContentSize:CGSizeMake(320, 720)];
     
@@ -70,7 +76,17 @@
     [myAppUUID getUUIDBytes:myAppUUIDbytes];
     
     [[PBPebbleCentral defaultCentral] setAppUUID:[NSData dataWithBytes:myAppUUIDbytes length:16]];
+   
     _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+    
+
+    _locationMgr = [[CLLocationManager alloc] init];
+    _locationMgr.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationMgr.delegate = self;
+    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"] major: 1 minor: 1 identifier: @"region1"];
+    region.notifyEntryStateOnDisplay = YES;
+    [_locationMgr startMonitoringForRegion:region];
+    [_locationMgr startRangingBeaconsInRegion:region];
     
     
     //[self broadcastOnPebbleClick];
@@ -101,32 +117,7 @@
  */
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
 {
-    // Opt out from any other state
-    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
-        return;
-    }
-    
-    // We're in CBPeripheralManagerStatePoweredOn state...
-    NSLog(@"self.peripheralManager powered on.");
-    
-    // ... so build our service.
-    
-    // Start with the CBMutableCharacteristic
-    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
-                                                                     properties:CBCharacteristicPropertyNotify
-                                                                          value:nil
-                                                                    permissions:CBAttributePermissionsReadable];
-    
-    // Then the service
-    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
-                                                                       primary:YES];
-    
-    // Add the characteristic to the service
-    transferService.characteristics = @[self.transferCharacteristic];
-    
-    // And add it to the peripheral manager
-    [self.peripheralManager addService:transferService];
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+
 }
 
 
@@ -137,7 +128,7 @@
     NSLog(@"Central subscribed to characteristic");
     
     // Get the data
-    self.dataToSend = [@"hola" dataUsingEncoding:NSUTF8StringEncoding];
+    self.dataToSend = totalData;
     
     // Reset the index
     self.sendDataIndex = 0;
@@ -205,6 +196,7 @@
         if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
         
         // Copy out the data we want
+        _dataToSend = [totalData dataUsingEncoding:NSUTF8StringEncoding];
         NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
         
         // Send it
@@ -272,4 +264,39 @@
 }
 
 
+- (IBAction)saveButton:(id)sender {
+    //NSLog(@"hi faggot");
+
+    totalData = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@", self.userName.text, self.userNumber.text, self.userStreet.text, self.userCity.text, self.userState.text, self.userZip.text];
+    
+    NSLog(@"%@", totalData);
+    // Opt out from any other state
+//    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
+//        return;
+//    }
+    
+    // We're in CBPeripheralManagerStatePoweredOn state...
+    NSLog(@"self.peripheralManager powered on.");
+    
+    // ... so build our service.
+    
+    // Start with the CBMutableCharacteristic
+    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
+                                                                     properties:CBCharacteristicPropertyNotify
+                                                                          value:nil
+                                   
+                                                                    permissions:CBAttributePermissionsReadable];
+    
+    // Then the service
+    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
+                                                                       primary:YES];
+    
+    // Add the characteristic to the service
+    transferService.characteristics = @[self.transferCharacteristic];
+    
+    // And add it to the peripheral manager
+    [self.peripheralManager addService:transferService];
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+    
+}
 @end

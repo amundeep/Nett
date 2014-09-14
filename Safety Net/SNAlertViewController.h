@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSString *alertName;
 @property (strong, nonatomic) IBOutlet MKMapView *alertMapView;
 
+@property (strong, nonatomic) IBOutlet UILabel *timeAlert;
 
+@property (strong, nonatomic) IBOutlet UILabel *phoneNumber;
 
 @end

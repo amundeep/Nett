@@ -19,11 +19,21 @@
 @property (strong, nonatomic) CBCentralManager      *centralManager;
 @property (strong, nonatomic) CBPeripheral          *discoveredPeripheral;
 @property (strong, nonatomic) NSMutableData         *data;
+@property (strong, nonatomic) CBPeripheralManager       *peripheralManager;
+@property (strong, nonatomic) CLLocationManager *locationMgr;
+@property(strong,nonatomic)NSString *lon;
+@property(strong,nonatomic)NSString *lat;
+@property (strong, nonatomic) CBMutableCharacteristic   *transferCharacteristic;
+@property (strong, nonatomic) NSData                    *dataToSend;
+@property (nonatomic, readwrite) NSInteger              sendDataIndex;
 @end
 
 @implementation SNFirstViewController
 
 @synthesize myAlerts;
+@synthesize myAlertsTemp;
+@synthesize dataString;
+@synthesize passedData;
 
 - (void)viewDidLoad
 {
@@ -32,17 +42,28 @@
     
     // Start up the CBCentralManager
     _centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    _locationMgr = [[CLLocationManager alloc] init];
+    _locationMgr.desiredAccuracy = kCLLocationAccuracyBest;
+    _locationMgr.delegate = self;
+    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"] major: 1 minor: 1 identifier: @"region1"];
+    region.notifyEntryStateOnDisplay = YES;
+    [_locationMgr startMonitoringForRegion:region];
+    [_locationMgr startRangingBeaconsInRegion:region];
     
     // And somewhere to store the incoming data
     _data = [[NSMutableData alloc] init];
     
-    myAlerts = [[NSMutableArray alloc] initWithObjects:@"Test Object 1", @"Test Object 2", nil];
+    myAlerts = [[NSMutableArray alloc] initWithObjects:@"09/12/2014 10:53 PM", @"09/13/2014 06:26 PM", nil];
     
     [self.tabBarController.tabBar setTintColor:[UIColor redColor]];
     
     self.edgesForExtendedLayout = UIRectEdgeAll;
     self.alertTableView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, self.tabBarController.tabBar.frame.size.height, 0.0f);
     [self.alertTableView setScrollIndicatorInsets:UIEdgeInsetsMake(0.0f, 0.0f, self.tabBarController.tabBar.frame.size.height, 0.0f)];
+    
+    if([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground){
+        [self performSegueWithIdentifier:@"tableCellContent" sender:self];
+    }
     
     
 }
@@ -77,7 +98,7 @@
 - (void)scan
 {
     [self.centralManager scanForPeripheralsWithServices:@[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]]
-                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @NO }];
+                                                options:@{ CBCentralManagerScanOptionAllowDuplicatesKey : @YES}];
     
     NSLog(@"Scanning started");
 }
@@ -90,14 +111,7 @@
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
     // Reject any where the value is above reasonable range
-    if (RSSI.integerValue > -15) {
-        return;
-    }
-    
-    // Reject if the signal strength is too low to be close enough (Close is around -22dB)
-    if (RSSI.integerValue < -35) {
-        return;
-    }
+
     
     NSLog(@"Discovered %@ at %@", peripheral.name, RSSI);
     
@@ -119,7 +133,7 @@
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
 {
     NSLog(@"Failed to connect to %@. (%@)", peripheral, [error localizedDescription]);
-    [self cleanup];
+   // [self cleanup];
 }
 
 
@@ -150,7 +164,7 @@
 {
     if (error) {
         NSLog(@"Error discovering services: %@", [error localizedDescription]);
-        [self cleanup];
+      //  [self cleanup];
         return;
     }
     
@@ -171,7 +185,7 @@
     // Deal with errors (if any)
     if (error) {
         NSLog(@"Error discovering characteristics: %@", [error localizedDescription]);
-        [self cleanup];
+       // [self cleanup];
         return;
     }
     
@@ -205,15 +219,81 @@
     if ([stringFromData isEqualToString:@"EOM"]) {
         
         // We have, so show the data,
-        NSLog(@"%@",self.data);
         
+        NSString* newStr = [[NSString alloc] initWithData:self.data encoding:NSUTF8StringEncoding];
+        //NEWSTR HAS DATA FROM BTLE PASSING
         
+        dataString = newStr;
+        passedData = [newStr componentsSeparatedByString:@","];
+        NSLog(@"%@",passedData);
+//        [myAlerts addObjectsFromArray:passedData];
+//        [self viewDidLoad];
+        
+       // NSLog(@"hi %@",passed);
         // Cancel our subscription to the characteristic
         [peripheral setNotifyValue:NO forCharacteristic:characteristic];
         
         // and disconnect from the peripehral
         [self.centralManager cancelPeripheralConnection:peripheral];
-         self.centralManager=nil;
+        [self.centralManager stopScan];
+        NSLog(@"stopped");
+        UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+        localNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        localNotification.alertBody = @"Danger nearby!";
+        localNotification.timeZone = [NSTimeZone defaultTimeZone];
+        
+        NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+        [DateFormatter setDateFormat:@"MM/dd/yyyy hh:mm at"];
+        NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
+        
+        NSString *currentDate =[DateFormatter stringFromDate:[NSDate date]];
+        
+        [myAlerts addObject:currentDate];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[myAlerts indexOfObject:currentDate] inSection:0];
+        [self.alertTableView beginUpdates];
+        [self.alertTableView
+         insertRowsAtIndexPaths:@[indexPath]withRowAnimation:UITableViewRowAnimationBottom];
+        [self.alertTableView endUpdates];
+
+        
+        [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        self.centralManager=nil;
+        if(![self connected]){
+            self.centralManager=nil;
+            NSLog(@"not connected");
+           _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+            [self testNoConnection];
+        } else {
+            self.centralManager=nil;
+            NSLog(@"start");
+            NSString *latitude = [[NSString alloc] initWithFormat:@"%g", _locationMgr.location.coordinate.latitude];
+            NSString *longitude = [[NSString alloc] initWithFormat:@"%g", _locationMgr.location.coordinate.longitude];
+            NSString *name =  [passedData objectAtIndex:0];
+        NSString *phone =  [passedData objectAtIndex:1];
+        NSString *street =  [passedData objectAtIndex:2];
+        NSString *city =  [passedData objectAtIndex:3];
+        NSString *state =  [passedData objectAtIndex:4];
+        NSString *zip=  [passedData objectAtIndex:5];
+            NSString *post = [NSString stringWithFormat:@"&Lat=%@&Lng=%@&Name=%@&Number=%@&Street=%@&City=%@&State=%@&Zip=%@",latitude,longitude,name,phone,street,city,state,zip];
+           // NSString *post = [NSString stringWithFormat:@"&Lat=%@&Lng=%@&Name=%@&Number=%@",latitude,longitude,@"Areeb Khan",@"4083910545"];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://tinovationtest.herokuapp.com/nett"]]];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:postData];
+            NSURLConnection *conn = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+           if(conn) {
+                NSLog(@"Connection Successful");
+            } else {
+                NSLog(@"Connection could not be made");
+            }
+
+            NSLog(@"pushing to server");
+        }
+        
     }
     
     // Otherwise, just add the data on to what we already have
@@ -224,86 +304,179 @@
 }
 
 
-/** The peripheral letting us know whether our subscribe/unsubscribe happened or not
- */
-- (void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
-{
-    if (error) {
-        NSLog(@"Error changing notification state: %@", error.localizedDescription);
-    }
+-(void)testNoConnection{
+    NSLog(@"heiy %@",passedData);
     
-    // Exit if it's not the transfer characteristic
-    if (![characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-        return;
-    }
-    
-    // Notification has started
-    if (characteristic.isNotifying) {
-        NSLog(@"Notification began on %@", characteristic);
-    }
-    
-    // Notification has stopped
-    else {
-        // so disconnect from the peripheral
-        NSLog(@"Notification stopped on %@.  Disconnecting", characteristic);
-        [self.centralManager cancelPeripheralConnection:peripheral];
-    }
 }
-
-
-/** Once the disconnection happens, we need to clean up our local copy of the peripheral
- */
-- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error
-{
-    NSLog(@"Peripheral Disconnected");
-    self.discoveredPeripheral = nil;
-    
-    // We're disconnected, so start scanning again
-    [self scan];
-}
-
-
-/** Call this when things either go wrong, or you're done with the connection.
- *  This cancels any subscriptions if there are any, or straight disconnects if not.
- *  (didUpdateNotificationStateForCharacteristic will cancel the connection if a subscription is involved)
- */
-- (void)cleanup
-{
-    // Don't do anything if we're not connected
-    if (!self.discoveredPeripheral.isConnected) {
-        return;
-    }
-    
-    // See if we are subscribed to a characteristic on the peripheral
-    if (self.discoveredPeripheral.services != nil) {
-        for (CBService *service in self.discoveredPeripheral.services) {
-            if (service.characteristics != nil) {
-                for (CBCharacteristic *characteristic in service.characteristics) {
-                    if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]]) {
-                        if (characteristic.isNotifying) {
-                            // It is notifying, so unsubscribe
-                            [self.discoveredPeripheral setNotifyValue:NO forCharacteristic:characteristic];
-                            
-                            // And we're done.
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    // If we've got this far, we're connected, but we're not subscribed, so we just disconnect
-    [self.centralManager cancelPeripheralConnection:self.discoveredPeripheral];
-}
-
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+/** Required protocol method.  A full app should take care of all the possible states,
+ *  but we're just waiting for  to know when the CBPeripheralManager is ready
+ */
+- (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheral
+{
+    // Opt out from any other state
+    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
+        return;
+    }
+    
+    // We're in CBPeripheralManagerStatePoweredOn state...
+    NSLog(@"self.peripheralManager powered on.");
+    
+    // ... so build our service.
+    
+    // Start with the CBMutableCharacteristic
+    self.transferCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_CHARACTERISTIC_UUID]
+                                                                     properties:CBCharacteristicPropertyNotify
+                                                                          value:nil
+                                                                    permissions:CBAttributePermissionsReadable];
+    
+    // Then the service
+    CBMutableService *transferService = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]
+                                                                       primary:YES];
+    
+    // Add the characteristic to the service
+    transferService.characteristics = @[self.transferCharacteristic];
+    
+    // And add it to the peripheral manager
+    [self.peripheralManager addService:transferService];
+}
+
+
+
+/** Catch when someone subscribes to our characteristic, then start sending them data
+ */
+- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didSubscribeToCharacteristic:(CBCharacteristic *)characteristic
+{
+    NSLog(@"Central subscribed to characteristic");
+    
+    // Get the data
+    self.dataToSend = dataString;
+    
+    // Reset the index
+    self.sendDataIndex = 0;
+    
+    // Start sending
+    [self sendData];
+}
+
+
+/** Recognise when the central unsubscribes
+ */
+- (void)peripheralManager:(CBPeripheralManager *)peripheral central:(CBCentral *)central didUnsubscribeFromCharacteristic:(CBCharacteristic *)characteristic
+{
+    NSLog(@"Central unsubscribed from characteristic");
+}
+
+
+/** Sends the next amount of data to the connected central
+ */
+- (void)sendData
+{
+    // First up, check if we're meant to be sending an EOM
+    static BOOL sendingEOM = NO;
+    
+    if (sendingEOM) {
+        
+        // send it
+        BOOL didSend = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+        
+        // Did it send?
+        if (didSend) {
+            
+            // It did, so mark it as sent
+            sendingEOM = NO;
+            
+            NSLog(@"Sent: EOM");
+        }
+        
+        // It didn't send, so we'll exit and wait for peripheralManagerIsReadyToUpdateSubscribers to call sendData again
+        return;
+    }
+    
+    // We're not sending an EOM, so we're sending data
+    
+    // Is there any left to send?
+    
+    if (self.sendDataIndex >= self.dataToSend.length) {
+        
+        // No data left.  Do nothing
+        return;
+    }
+    
+    // There's data left, so send until the callback fails, or we're done.
+    
+    BOOL didSend = YES;
+    
+    while (didSend) {
+        
+        // Make the next chunk
+        
+        // Work out how big it should be
+        NSInteger amountToSend = self.dataToSend.length - self.sendDataIndex;
+        
+        // Can't be longer than 20 bytes
+        if (amountToSend > NOTIFY_MTU) amountToSend = NOTIFY_MTU;
+        
+        // Copy out the data we want
+        _dataToSend = [dataString dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *chunk = [NSData dataWithBytes:self.dataToSend.bytes+self.sendDataIndex length:amountToSend];
+        
+        // Send it
+        didSend = [self.peripheralManager updateValue:chunk forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+        
+        // If it didn't work, drop out and wait for the callback
+        if (!didSend) {
+            return;
+        }
+        
+        NSString *stringFromData = [[NSString alloc] initWithData:chunk encoding:NSUTF8StringEncoding];
+        NSLog(@"Sent: %@", stringFromData);
+        
+        // It did send, so update our index
+        self.sendDataIndex += amountToSend;
+        
+        // Was it the last one?
+        if (self.sendDataIndex >= self.dataToSend.length) {
+            
+            // It was - send an EOM
+            
+            // Set this so if the send fails, we'll send it next time
+            sendingEOM = YES;
+            
+            // Send it
+            BOOL eomSent = [self.peripheralManager updateValue:[@"EOM" dataUsingEncoding:NSUTF8StringEncoding] forCharacteristic:self.transferCharacteristic onSubscribedCentrals:nil];
+            
+            if (eomSent) {
+                // It sent, we're all done
+                sendingEOM = NO;
+                
+                NSLog(@"Sent: EOM");
+            }
+            
+            return;
+        }
+    }
+}
+
+
+/** This callback comes in when the PeripheralManager is ready to send the next chunk of data.
+ *  This is to ensure that packets will arrive in the order they are sent
+ */
+- (void)peripheralManagerIsReadyToUpdateSubscribers:(CBPeripheralManager *)peripheral
+{
+    // Start sending again
+    [self sendData];
+}
+
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -329,30 +502,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    int indexRow = indexPath.row;
-//    NSString *selectedValue = [myAlerts objectAtIndex:indexRow];
-//
-//    if (!yourObject) {
-//        yourObject = [[yourViewController alloc] initWithNibName:@"yourViewController" bundle:nil];
-//        
-//    }
-//    
-//    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:nil action:nil];
-//    self.navigationItem.backBarButtonItem = backBarButtonItem;
-//    [backBarButtonItem release];
-//    [self.navigationController pushViewController:yourObject animated:YES];
- 
-//    UIViewController *newViewController = [[UIViewController alloc] initWithNibName:@"TableCellViewController" bundle:nil];
-//    
-//    [self.navigationController pushViewController:newViewController animated:YES];
-    
+
 //    [self performSegueWithIdentifier:@"segueIdentifier" sender:tableView];
     
     NSLog(@"%s", "Working... ");
-//    SNAlertViewController *modalView = [[SNAlertViewController alloc] initWithNibName:@"SNAlertViewController" bundle:nil];
-////    modalView.transitioningDelegate = UIModalTransitionStyleCoverVertical;
-//    modalView.alertName = [[myAlerts objectAtIndex:indexRow] textLabel].text;
+
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"tableCellContent" sender:self];
@@ -365,6 +519,14 @@
 {
     NSLog(@"%s", "Did it go here?");
    
+}
+
+
+- (BOOL)connected
+{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return networkStatus != NotReachable;
 }
 
 

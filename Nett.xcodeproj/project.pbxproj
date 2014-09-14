@@ -25,12 +25,13 @@
 		8A8E87A719C3D14B00996DDB /* alerts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87A619C3D14B00996DDB /* alerts@2x.png */; };
 		8A8E87AB19C3D24300996DDB /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87AA19C3D24300996DDB /* me@2x.png */; };
 		8A8E87AD19C3D2CA00996DDB /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87AC19C3D2CA00996DDB /* settings@2x.png */; };
-		8A8E87B319C3E34200996DDB /* launch_icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */; };
 		8A8E87B819C4CC3F00996DDB /* SNAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A8E87B719C4CC3F00996DDB /* SNAlertViewController.m */; };
 		8A8E87BA19C4E01400996DDB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E87B919C4E01400996DDB /* MapKit.framework */; };
 		8A8E87BC19C4E6A300996DDB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A8E87BB19C4E6A300996DDB /* CoreLocation.framework */; };
 		8A8E87BE19C4EF4A00996DDB /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87BD19C4EF4A00996DDB /* blue.png */; };
 		8A8E87C019C4F13B00996DDB /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A8E87BF19C4F13B00996DDB /* green.png */; };
+		8A962C8119C55F54008C04BB /* SNThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A962C8019C55F54008C04BB /* SNThirdViewController.m */; };
+		8A962C8319C56BBC008C04BB /* launch_icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A962C8219C56BBC008C04BB /* launch_icon2@2x.png */; };
 		8AD58F3D19C5371B00BD785B /* PebbleKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD58F3C19C5371B00BD785B /* PebbleKit.framework */; };
 		8AD58F3F19C5372300BD785B /* PebbleVendor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD58F3E19C5372300BD785B /* PebbleVendor.framework */; };
 		8AD58F4119C5372D00BD785B /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AD58F4019C5372D00BD785B /* CoreBluetooth.framework */; };
@@ -57,7 +58,7 @@
 		8A58442119C3A10F00DB8125 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8A58442319C3A10F00DB8125 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8A58442519C3A10F00DB8125 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		8A58442919C3A10F00DB8125 /* Safety Net-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Safety Net-Info.plist"; sourceTree = "<group>"; };
+		8A58442919C3A10F00DB8125 /* Nett-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Nett-Info.plist"; sourceTree = "<group>"; };
 		8A58442B19C3A10F00DB8125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A58442D19C3A10F00DB8125 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A58442F19C3A10F00DB8125 /* Safety Net-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Safety Net-Prefix.pch"; sourceTree = "<group>"; };
@@ -71,19 +72,21 @@
 		8A58443C19C3A10F00DB8125 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8A58444219C3A10F00DB8125 /* Safety NetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Safety NetTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A58444319C3A10F00DB8125 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8A58444B19C3A10F00DB8125 /* Safety NetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Safety NetTests-Info.plist"; sourceTree = "<group>"; };
+		8A58444B19C3A10F00DB8125 /* NettTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NettTests-Info.plist"; sourceTree = "<group>"; };
 		8A58444D19C3A10F00DB8125 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8A58444F19C3A10F00DB8125 /* Safety_NetTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Safety_NetTests.m; sourceTree = "<group>"; };
 		8A8E87A619C3D14B00996DDB /* alerts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alerts@2x.png"; sourceTree = "<group>"; };
 		8A8E87AA19C3D24300996DDB /* me@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "me@2x.png"; sourceTree = "<group>"; };
 		8A8E87AC19C3D2CA00996DDB /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
-		8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_icon2@2x.png"; sourceTree = "<group>"; };
 		8A8E87B619C4CC3F00996DDB /* SNAlertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNAlertViewController.h; sourceTree = "<group>"; };
 		8A8E87B719C4CC3F00996DDB /* SNAlertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNAlertViewController.m; sourceTree = "<group>"; };
 		8A8E87B919C4E01400996DDB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		8A8E87BB19C4E6A300996DDB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8A8E87BD19C4EF4A00996DDB /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue.png; path = ../../../../../Pictures/Icons/blue.png; sourceTree = "<group>"; };
 		8A8E87BF19C4F13B00996DDB /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = green.png; path = ../../../../../Pictures/Icons/green.png; sourceTree = "<group>"; };
+		8A962C7F19C55F54008C04BB /* SNThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNThirdViewController.h; sourceTree = "<group>"; };
+		8A962C8019C55F54008C04BB /* SNThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNThirdViewController.m; sourceTree = "<group>"; };
+		8A962C8219C56BBC008C04BB /* launch_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_icon2@2x.png"; sourceTree = "<group>"; };
 		8AD58F3C19C5371B00BD785B /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
 		8AD58F3E19C5372300BD785B /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleVendor.framework; sourceTree = "<group>"; };
 		8AD58F4019C5372D00BD785B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -182,12 +185,14 @@
 				8A58443719C3A10F00DB8125 /* SNFirstViewController.m */,
 				8A58443919C3A10F00DB8125 /* SNSecondViewController.h */,
 				8A58443A19C3A10F00DB8125 /* SNSecondViewController.m */,
+				8A962C7F19C55F54008C04BB /* SNThirdViewController.h */,
+				8A962C8019C55F54008C04BB /* SNThirdViewController.m */,
 				8A8E87B619C4CC3F00996DDB /* SNAlertViewController.h */,
 				8A8E87B719C4CC3F00996DDB /* SNAlertViewController.m */,
 				8A8E87A619C3D14B00996DDB /* alerts@2x.png */,
 				8A8E87AA19C3D24300996DDB /* me@2x.png */,
 				8A8E87AC19C3D2CA00996DDB /* settings@2x.png */,
-				8A8E87B219C3E34200996DDB /* launch_icon2@2x.png */,
+				8A962C8219C56BBC008C04BB /* launch_icon2@2x.png */,
 				8A8E87BD19C4EF4A00996DDB /* blue.png */,
 				8A8E87BF19C4F13B00996DDB /* green.png */,
 				8A58443C19C3A10F00DB8125 /* Images.xcassets */,
@@ -199,7 +204,7 @@
 		8A58442819C3A10F00DB8125 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8A58442919C3A10F00DB8125 /* Safety Net-Info.plist */,
+				8A58442919C3A10F00DB8125 /* Nett-Info.plist */,
 				8A58442A19C3A10F00DB8125 /* InfoPlist.strings */,
 				8A58442D19C3A10F00DB8125 /* main.m */,
 				8A58442F19C3A10F00DB8125 /* Safety Net-Prefix.pch */,
@@ -219,7 +224,7 @@
 		8A58444A19C3A10F00DB8125 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8A58444B19C3A10F00DB8125 /* Safety NetTests-Info.plist */,
+				8A58444B19C3A10F00DB8125 /* NettTests-Info.plist */,
 				8A58444C19C3A10F00DB8125 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -286,7 +291,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8A58441919C3A10F00DB8125 /* Build configuration list for PBXProject "Safety Net" */;
+			buildConfigurationList = 8A58441919C3A10F00DB8125 /* Build configuration list for PBXProject "Nett" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -312,10 +317,10 @@
 			files = (
 				8A58443D19C3A10F00DB8125 /* Images.xcassets in Resources */,
 				8A8E87AD19C3D2CA00996DDB /* settings@2x.png in Resources */,
-				8A8E87B319C3E34200996DDB /* launch_icon2@2x.png in Resources */,
 				8A8E87C019C4F13B00996DDB /* green.png in Resources */,
 				8A8E87BE19C4EF4A00996DDB /* blue.png in Resources */,
 				8A8E87A719C3D14B00996DDB /* alerts@2x.png in Resources */,
+				8A962C8319C56BBC008C04BB /* launch_icon2@2x.png in Resources */,
 				8A58442C19C3A10F00DB8125 /* InfoPlist.strings in Resources */,
 				8A58443519C3A10F00DB8125 /* Main.storyboard in Resources */,
 				8A8E87AB19C3D24300996DDB /* me@2x.png in Resources */,
@@ -343,6 +348,7 @@
 				8A58443819C3A10F00DB8125 /* SNFirstViewController.m in Sources */,
 				8AD58F4E19C5387400BD785B /* Reachability.m in Sources */,
 				8A58443B19C3A10F00DB8125 /* SNSecondViewController.m in Sources */,
+				8A962C8119C55F54008C04BB /* SNThirdViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,9 +481,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Safety Net/Safety Net-Prefix.pch";
-				INFOPLIST_FILE = "Safety Net/Safety Net-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Safety Net/Nett-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Safety Net";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -496,9 +502,9 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Safety Net/Safety Net-Prefix.pch";
-				INFOPLIST_FILE = "Safety Net/Safety Net-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Safety Net/Nett-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Safety Net";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -519,8 +525,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Safety NetTests/Safety NetTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Safety NetTests/NettTests-Info.plist";
+				PRODUCT_NAME = "Safety NetTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -537,8 +543,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Safety Net/Safety Net-Prefix.pch";
-				INFOPLIST_FILE = "Safety NetTests/Safety NetTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "Safety NetTests/NettTests-Info.plist";
+				PRODUCT_NAME = "Safety NetTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -547,7 +553,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8A58441919C3A10F00DB8125 /* Build configuration list for PBXProject "Safety Net" */ = {
+		8A58441919C3A10F00DB8125 /* Build configuration list for PBXProject "Nett" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8A58445119C3A10F00DB8125 /* Debug */,

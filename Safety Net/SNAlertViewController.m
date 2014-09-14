@@ -14,6 +14,9 @@
 
 @implementation SNAlertViewController
 
+@synthesize timeAlert;
+@synthesize phoneNumber;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -41,6 +44,14 @@
     
     [self.alertMapView setRegion:region];
     [self.alertMapView addAnnotation:annotation];
+    
+    NSDateFormatter *DateFormatter=[[NSDateFormatter alloc] init];
+    [DateFormatter setDateFormat:@"MM-dd-yyyy hh:mm at"];
+    NSLog(@"%@",[DateFormatter stringFromDate:[NSDate date]]);
+    
+    
+    timeAlert.text = [DateFormatter stringFromDate:[NSDate date]];
+    phoneNumber.text = @"(408) 391 - 0545";
     
 }
 

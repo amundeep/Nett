@@ -15,11 +15,21 @@
     
     
 }
+- (IBAction)saveButton:(id)sender;
+
 
 @property (strong, nonatomic) IBOutlet UIScrollView *infoScrollView;
 - (BOOL)connected;
-@property (strong, nonatomic) IBOutlet UILabel *longCord;
-@property (strong, nonatomic) IBOutlet UITextView *latCord;
+
+@property (strong, nonatomic) NSString *totalData;
+@property (strong, nonatomic) IBOutlet UITextField *userName;
+
+@property (strong, nonatomic) IBOutlet UITextField *userNumber;
+@property (strong, nonatomic) IBOutlet UITextField *userStreet;
+@property (strong, nonatomic) IBOutlet UITextField *userCity;
+@property (strong, nonatomic) IBOutlet UITextField *userState;
+@property (strong, nonatomic) IBOutlet UITextField *userZip;
+
 
 
 @end
