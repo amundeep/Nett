@@ -49,11 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    
-//    self.edgesForExtendedLayout = UIRectEdgeAll;
-//    self.infoScrollView.contentInset = UIEdgeInsetsMake(0.0f, 0.0f, self.tabBarController.tabBar.frame.size.height, 0.0f);
-//    [self.infoScrollView setScrollIndicatorInsets:UIEdgeInsetsMake(0.0f, 0.0f, self.tabBarController.tabBar.frame.size.height, 0.0f)];
+
     
     if (![self connected]) {
         NSLog(@"no internet");
@@ -70,13 +66,8 @@
     
     [self.infoScrollView setContentSize:CGSizeMake(320, 720)];
     
-    self.connectedWatch = [[PBPebbleCentral defaultCentral] lastConnectedWatch];
-    uuid_t myAppUUIDbytes;
-    NSUUID *myAppUUID = [[NSUUID alloc] initWithUUIDString:@"5c0ffe29-0d28-4e70-b5ab-730551c1d132"];
-    [myAppUUID getUUIDBytes:myAppUUIDbytes];
+
     
-    [[PBPebbleCentral defaultCentral] setAppUUID:[NSData dataWithBytes:myAppUUIDbytes length:16]];
-   
     _peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
     
 
@@ -89,7 +80,18 @@
     [_locationMgr startRangingBeaconsInRegion:region];
     
     
-    //[self broadcastOnPebbleClick];
+    [[PBPebbleCentral defaultCentral] setDelegate:self];
+    
+    self.connectedWatch = [[PBPebbleCentral defaultCentral] lastConnectedWatch];
+    uuid_t myAppUUIDbytes;
+    NSUUID *myAppUUID = [[NSUUID alloc] initWithUUIDString:@"5c0ffe29-0d28-4e70-b5ab-730551c1d132"];
+    [myAppUUID getUUIDBytes:myAppUUIDbytes];
+    
+    [[PBPebbleCentral defaultCentral] setAppUUID:[NSData dataWithBytes:myAppUUIDbytes length:16]];
+    
+    NSLog(@"Last connected watch: %@", self.connectedWatch);
+    
+    [self broadcastOnPebbleClick];
 }
 
 
@@ -98,8 +100,7 @@
     [self.connectedWatch appMessagesAddReceiveUpdateHandler:^BOOL(PBWatch *watch, NSDictionary *update) {
         NSLog(@"Received message: %@", update);
         NSLog(@"button hit, broadcasting now");
-        
-        //[self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
+       // [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
         //self.longCord.text=[NSString stringWithFormat:@"%@", @"broadcasting"];
         return YES;
     }];
@@ -265,15 +266,20 @@
 
 
 - (IBAction)saveButton:(id)sender {
-    //NSLog(@"hi faggot");
 
+    [self performSelector:@selector(finishUp) withObject:self afterDelay:3.0 ];
+
+}
+
+-(void)finishUp{
+    
     totalData = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@", self.userName.text, self.userNumber.text, self.userStreet.text, self.userCity.text, self.userState.text, self.userZip.text];
     
     NSLog(@"%@", totalData);
     // Opt out from any other state
-//    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
-//        return;
-//    }
+    //    if (peripheral.state != CBPeripheralManagerStatePoweredOn) {
+    //        return;
+    //    }
     
     // We're in CBPeripheralManagerStatePoweredOn state...
     NSLog(@"self.peripheralManager powered on.");
@@ -296,7 +302,10 @@
     
     // And add it to the peripheral manager
     [self.peripheralManager addService:transferService];
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
     
+    
+    
+    
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:TRANSFER_SERVICE_UUID]] }];
 }
 @end

@@ -87,8 +87,8 @@
 		8A962C7F19C55F54008C04BB /* SNThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNThirdViewController.h; sourceTree = "<group>"; };
 		8A962C8019C55F54008C04BB /* SNThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNThirdViewController.m; sourceTree = "<group>"; };
 		8A962C8219C56BBC008C04BB /* launch_icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch_icon2@2x.png"; sourceTree = "<group>"; };
-		8AD58F3C19C5371B00BD785B /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleKit.framework; sourceTree = "<group>"; };
-		8AD58F3E19C5372300BD785B /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PebbleVendor.framework; sourceTree = "<group>"; };
+		8AD58F3C19C5371B00BD785B /* PebbleKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleKit.framework; path = ../PebbleKit.framework; sourceTree = "<group>"; };
+		8AD58F3E19C5372300BD785B /* PebbleVendor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PebbleVendor.framework; path = ../PebbleVendor.framework; sourceTree = "<group>"; };
 		8AD58F4019C5372D00BD785B /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		8AD58F4219C5374D00BD785B /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		8AD58F4419C5375700BD785B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -161,8 +161,6 @@
 				8AD58F4419C5375700BD785B /* CFNetwork.framework */,
 				8AD58F4219C5374D00BD785B /* CoreMotion.framework */,
 				8AD58F4019C5372D00BD785B /* CoreBluetooth.framework */,
-				8AD58F3E19C5372300BD785B /* PebbleVendor.framework */,
-				8AD58F3C19C5371B00BD785B /* PebbleKit.framework */,
 				8A8E87BB19C4E6A300996DDB /* CoreLocation.framework */,
 				8A8E87B919C4E01400996DDB /* MapKit.framework */,
 				8A58442119C3A10F00DB8125 /* Foundation.framework */,
@@ -181,7 +179,9 @@
 				8AD58F4C19C5387400BD785B /* Reachability.h */,
 				8AD58F4D19C5387400BD785B /* Reachability.m */,
 				8A58443319C3A10F00DB8125 /* Main.storyboard */,
+				8AD58F3E19C5372300BD785B /* PebbleVendor.framework */,
 				8A58443619C3A10F00DB8125 /* SNFirstViewController.h */,
+				8AD58F3C19C5371B00BD785B /* PebbleKit.framework */,
 				8A58443719C3A10F00DB8125 /* SNFirstViewController.m */,
 				8A58443919C3A10F00DB8125 /* SNSecondViewController.h */,
 				8A58443A19C3A10F00DB8125 /* SNSecondViewController.m */,
@@ -432,6 +432,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -463,6 +464,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
